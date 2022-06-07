@@ -1,0 +1,62 @@
+<!-- Подключаем JQuery и Chart.js -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+
+<!-- Готовим контейнер для диаграммы -->
+<div id="content" align="center">
+    <canvas id="myChart" width="628" height="400"></canvas>
+</div>
+
+<script type="text/javascript">
+    //Готовим диаграмму
+    function Diagram() {
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [], //Подписи оси x
+                datasets: [
+                    {
+                        label: 'f(x)', //Метка
+                        data: [], //Данные
+                        borderColor: 'blue', //Цвет
+                        borderWidth: 2, //Толщина линии
+                        fill: false //Не заполнять под графиком
+                    }
+                    //Можно добавить другие графики
+                ]
+            },
+            options: {
+                responsive: false, //Вписывать в размер canvas
+                scales: {
+                    xAxes: [{
+                        display: true
+                    }],
+                    yAxes: [{
+                        display: true
+                    }]
+                }
+            }
+        });
+        //Заполняем данными
+        for (var x = 0.0; x <= 2 * Math.PI; x += Math.PI / 10) {
+            myChart.data.labels.push('' + x.toFixed(2));
+            myChart.data.datasets[0].data.push(f(x).toFixed(2));
+        }
+        //Обновляем
+        myChart.update();
+
+        function f(x) { //Вычисление нужной функции
+            return Math.sin(x);
+        }
+    }
+
+    //Ставим загрузку диаграммы на событие загрузки страницы
+    window.addEventListener("load", Diagram); 
+</script>
+<noscript>
+    <div align="center">
+        Извините, для работы приложения нужен включённый Javascript
+    </div>
+</noscript>

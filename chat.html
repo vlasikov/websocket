@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<metacharset="utf-8">
+<title>WebSockets Demo</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Подключаем JQuery и Chart.js -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+</head>
+<body>
+<div id="page-wrapper">
+<h1>WebSockets Demo</h1>
+
+<div id="status">Connecting...</div>
+<!-- Готовим контейнер для диаграммы -->
+<div id="content" align="center">
+    <canvas id="myChart" width="628" height="400"></canvas>
+</div>
+
+<ul id="messages"></ul>
+
+<form id="message-form" action="#" method="post">
+<textarea id="message" placeholder="Write your message here..." required></textarea>
+<button type="submit">Send Message</button>
+<button type="button" id="close">Close Connection</button>
+<button type="button" id="test">send HTTP POST</button>
+</form>
+</div>
+
+<script src="app.js"></script>
+
+<script type="text/javascript">
+    
+
+    //Ставим загрузку диаграммы на событие загрузки страницы
+    //window.addEventListener("load", Diagram); 
+</script>
+<noscript>
+    <div align="center">
+        Извините, для работы приложения нужен включённый Javascript
+    </div>
+</noscript>
+</body>
+</html>
