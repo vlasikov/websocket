@@ -10,6 +10,7 @@ window.onload = function() {
   var ctx           = document.getElementById("myChart");
 
   // Create a new WebSocket.
+  // доделать проверку на порт
   var socket = new WebSocket('ws://vlasikovvlasikov.asuscomm.com:8000');
 
   // Handle any errors that occur.
@@ -56,7 +57,7 @@ window.onload = function() {
   function post() {
     var temp;
     var xhr = new XMLHttpRequest();             // Создаём объект xhr
-    xhr.open("POST", "post.php", true);         // Открываем асинхронное соединение
+    xhr.open("POST", "temp-post.php", true);    // Открываем асинхронное соединение
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");// Отправляем кодировку
     xhr.send("Request data.txt");               // Отправляем POST-запрос
     xhr.onreadystatechange = function ()        // Ждём ответа от сервера
@@ -67,20 +68,45 @@ window.onload = function() {
         {
           messagesList.innerHTML += xhr.responseText; // Выводим ответ сервера
 
-          var value = xhr.responseText;
+          var file = xhr.responseText.split(';');
+          console.log(file[0]);
+          console.log('===================');
+          console.log(file[1]);
+
+          // парсим старые значения
+          var value_old = file[0];
+          value_old = value_old.replaceAll("'", '"');   // заменели кавычки
+          fields_old = value_old.split('\n');           // файл в массив строк
+
+          // парсим прогноз
+          var value = file[1];
           value = value.replaceAll("'", '"');   // заменели кавычки
           fields = value.split('\n');           // файл в массив строк
 
           let arrVal = [];
-          for (let i = 0; i< fields.length-1; i++  ) {
-            temp = JSON.parse(fields[i]);
-            // console.log(temp);
-            // console.log(temp.value);
-            arrVal.push(temp.value);
+          let arrVal2 = [];
+          let arrLabel = [];
+
+          console.log(fields.length-1);
+          for(let i = 0; i< 72 - (fields.length-1); i++) {
+            temp = JSON.parse(fields_old[47 -(72 - (fields.length-1))  +i]);
+            arrVal.push(null);
+            arrVal2.push(temp.value);
+            arrLabel.push(temp.time);
           }
 
-          myChart.data.labels = arrVal;
+          for(let i = 0; i< fields.length-1; i++  ) {
+            temp = JSON.parse(fields[i]);
+            arrVal.push(temp.value);
+            arrLabel.push(temp.time);
+            if(i < 1){
+              arrVal2.push(temp.value);
+            }
+          }
+
+          myChart.data.labels = arrLabel;
           myChart.data.datasets[0].data = arrVal;
+          myChart.data.datasets[1].data = arrVal2;
           myChart.update();
         }
       }
@@ -109,9 +135,16 @@ window.onload = function() {
       labels: [],                               //Подписи оси x
       datasets: [
         {
-          label: 'f(x)',                        //Метка
+          label: 't `C, new;',                       //Метка
           data: [],                             //Данные
           borderColor: 'blue',                  //Цвет
+          borderWidth: 2,                       //Толщина линии
+          fill: false                           //Не заполнять под графиком
+        },
+        {
+          label: 't `C, old;',                       //Метка
+          data2: [],                            //Данные
+          borderColor: 'red',                   //Цвет
           borderWidth: 2,                       //Толщина линии
           fill: false                           //Не заполнять под графиком
         }

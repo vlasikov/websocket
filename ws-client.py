@@ -22,12 +22,7 @@ n = f.write("{'gmdate':'"+str(now)+"', 'value':"+str(val)+"}\n")
 f.close()
 
 #============================
-#ws = create_connection("ws://echo.websocket.events/")
 ws = create_connection("ws://vlasikovvlasikov.asuscomm.com:8000")
-#print(ws.recv())
 ws.send("ws-client.py: new data")
 print("Sent ws-client: new data")
-#print("Receiving...")
-#result =  ws.recv()
-#print("Received '%s'" % result)
 ws.close()
