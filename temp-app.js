@@ -1,3 +1,4 @@
+const TOTAL_DAYS = 7;
 var fields;
 window.onload = function() {
   // Get references to elements on the page.
