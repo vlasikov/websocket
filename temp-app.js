@@ -89,8 +89,8 @@ window.onload = function() {
           let arrLabel = [];
 
           console.log(fields.length-1);
-          for(let i = 0; i< 72 - (fields.length-1); i++) {
-            temp = JSON.parse(fields_old[47 -(72 - (fields.length-1))  +i]);
+          for(let i = 0; i< 168 - (fields.length-1); i++) {      // старые значения
+            temp = JSON.parse(fields_old[143 -(168 - (fields.length-1))  +i]);
             arrVal.push(null);
             arrVal2.push(temp.value);
             arrLabel.push(temp.time);

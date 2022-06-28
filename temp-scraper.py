@@ -48,7 +48,7 @@ f.close()
 i=0
 f = open("temp-data.txt","w")               # перезаписываем (всё без первой строки)
 for line in lines:
-  if i!=0 or len(lines)<48:
+  if i!=0 or len(lines)<144:
     f.write(line)
   i+=1
 f.write(str_temp_carrent +"\n") 			# текущее значение сохраняем
