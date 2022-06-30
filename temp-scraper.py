@@ -35,7 +35,7 @@ for str in list_temp:
 str_temp_carrent = lines[0];				# текущая температура
 
 i=0
-f = open("temp-data-ya.txt","w")            # перезаписываем (всё без первой строки)
+f = open("temp-data-ya.txt","w")            # перезаписываем прогноз
 for line in lines:
   	f.write(line+"\n")
 f.close()
@@ -46,7 +46,7 @@ lines = f.readlines()
 f.close()
 
 i=0
-f = open("temp-data.txt","w")               # перезаписываем (всё без первой строки)
+f = open("temp-data.txt","w")               # перезаписываем старые значения (всё без первой строки)
 for line in lines:
   if i!=0 or len(lines)<144:
     f.write(line)
