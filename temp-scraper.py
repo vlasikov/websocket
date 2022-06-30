@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from lxml import html
 
+
 # получаем значения с сайта
 url = 'https://yandex.ru/pogoda/?utm_campaign=informer&utm_medium=web&utm_content=main_informer&utm_source=home&utm_term=title'
 response = requests.get(url)
