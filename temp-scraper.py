@@ -12,6 +12,13 @@ soup = BeautifulSoup(response.text, 'lxml')
 list_temp = soup.findAll('div', {'class': 'fact__hour-temp'})
 list_label = soup.findAll('div', {'class': 'fact__hour-label'})
 
+#citi = soup.findAll('span', {'class': 'breadcrumbs__title'})
+#print(citi);
+
+pressure = soup.findAll('span', {'class': 'a11y-hidden'})
+print(pressure);
+
+
 i=0
 j=0
 str_time=''

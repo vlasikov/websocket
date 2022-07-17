@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<configuration>
+    <url>https://yandex.ru/pogoda/?utm_campaign=informer&amp;utm_medium=web&amp;utm_content=main_informer&amp;utm_source=home&amp;utm_term=title</url>
+    <appointment id="bk101">
+        <begin>1181251680</begin>
+        <uid>040000008200E000</uid>
+        <alarmTime>1181572063</alarmTime>
+        <state />
+        <location id="bk101"/>
+        <duration>1800</duration>
+        <subject />
+    </appointment>
+</configuration>

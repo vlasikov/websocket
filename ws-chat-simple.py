@@ -8,6 +8,8 @@ class SimpleChat(WebSocket):
         for client in clients:
             if client != self:
                 client.send_message(self.address[0] + u' - ' + self.data)
+            #else
+            #    client.send_message(self.address[0] + u' - ' + self.data)
 
     def connected(self):
         print(self.address, 'connected')
@@ -24,5 +26,5 @@ class SimpleChat(WebSocket):
 
 clients = []
 
-server = WebSocketServer('192.168.1.72', 8000, SimpleChat)
+server = WebSocketServer('192.168.1.72', 8000, SimpleChat)      # интерфейс не перепутать
 server.serve_forever()
