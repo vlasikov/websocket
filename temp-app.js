@@ -12,7 +12,7 @@ window.onload = function() {
 
   // Create a new WebSocket.
   // доделать проверку на порт
-  var socket = new WebSocket('ws://vlasikovvlasikov.asuscomm.com:8000');
+  var socket = new WebSocket('wss://vlasikovvlasikov.asuscomm.com:8000');
 
   // Handle any errors that occur.
   socket.onerror = function(error) {
